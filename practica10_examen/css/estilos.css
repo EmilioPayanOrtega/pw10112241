@@ -1,0 +1,71 @@
+body{
+    border: 1px solid red;
+    margin: 0px auto;
+
+}
+
+header nav article{
+    display: inline-block;
+    width: 33%;
+}
+
+header nav ul li{
+    color:grey;
+    display: inline-block;
+    margin-right: 40px;
+    
+    
+}
+
+header nav button{
+    background-color: white;
+    border: 1px solid red;
+    color: red;
+    float: right;
+    margin-right: 5px;
+    margin-top: -15px;
+}
+
+footer article {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 5px;
+    vertical-align: top;
+    width: 20%;
+
+}
+
+section{
+    display: inline-block;
+    
+}
+section article{
+    display: inline-block;
+    vertical-align: top;
+    width: 49%;
+}
+
+
+
+#but2{
+    background-color: red;
+    border: 1px solid red;
+    color: white;
+}
+
+
+
+
+.art{
+    font-size: 1.5em;
+}
+.foot{
+    font-size: 1.8em;
+}
+.main{
+    font-size: 3.0em;
+}
+
+.nito{
+    font-weight: bold;
+}
