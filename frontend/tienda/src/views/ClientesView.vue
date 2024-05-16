@@ -2,13 +2,70 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h4>Clientes
-                    <Routerlink to="/clientes/clientes" class="btn btn-primary float-end">
+                <h4> Clientes
+                    <RouterLink to=/clientes/create class="btn btn-primary float-end">
                         Agregar
-                    </Routerlink>
+                    </RouterLink>
                 </h4>
             </div>
-            <div class="card-body"></div>
-        </div> 
-    </div>         
-    </template>
+            <div class="card-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <th> ID</th>
+                        <th> Nombre </th>
+                        <th> Direccion </th>
+                        <th> Telefono </th>
+                        <th> RFC </th>
+                        <th> Acciones</th>
+                    </thead>
+                    <tbody v-if="clientes.lenght > 0">
+                        <tr v-for="(cliente, index) in clientes" :key="index">
+                            <td> {{ cliente.id }}</td>
+                            <td> {{ cliente.nombre }}</td>
+                            <td> {{ cliente.direccion }}</td>
+                            <td> {{ cliente.telefono }}</td>
+                            <td> {{ cliente.rfc }}</td>
+                            <td> Editar &nbsp; 
+                                <buttton class="btn btn-danger" @click="deleteCliente(cliente.id)"> Borrar</buttton>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody v-else>
+                        <tr>
+                            <td colspan="6" style="text-align: center;"> Clientesn't </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+import axios from 'axios';
+export default {
+    name: "ClientesView",
+    data() {
+        return {
+            clientes: [],
+        }
+    },
+    mounted(){ //Cuando se recarga la pagina
+        this.getClientes();
+    },
+    methods: {
+        getClientes() {
+            axios.get('http://localhost:3000/api/clientes').then(res=>{
+                this.clientes = res.data;
+            });
+        }, 
+        deleteCliente(iddelclienteaborrar){
+            axios.delete('http://localhost:3000/api/clientes/'+iddelclienteaborrar).then(res=>{
+                if(res.data.affectedRows > 0){
+                    this.getClientes(); //Se recarguen los datos
+                }
+            });
+        }
+
+    }
+}
+</script>
